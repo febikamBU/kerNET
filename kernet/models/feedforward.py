@@ -406,6 +406,7 @@ class feedforward(_baseFeedforward):
         if n_epoch==0:
             # no training, but needs to update X for upper layers
             for x, y in train_loader:
+                x, y = x.to(self._device), y.to(self._device)
                 self(x, update_X=True)
                 break
             return
@@ -704,6 +705,7 @@ class _greedyFeedforward(_baseFeedforward):
             assert layer_epoch>=0
             if layer_epoch==0:
                 for x, y in train_loader:
+                    x, y = x.to(self._device), y.to(self._device)
                     self(x, upto=i, update_X=True)
                     break
                 
@@ -889,6 +891,7 @@ class _greedyFeedforward(_baseFeedforward):
         assert layer_epoch>=0
         if layer_epoch==0:
             for x, y in train_loader:
+                x, y = x.to(self._device), y.to(self._device)
                 self(x, upto=i, update_X=True)
                 break
 
